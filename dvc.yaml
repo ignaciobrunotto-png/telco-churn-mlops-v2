@@ -18,3 +18,16 @@ stages:
       - models/model.pkl
     metrics:
       - metrics.json
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/model.pkl
+      - data/processed/telco_churn_clean.csv
+      - params.yaml
+    outs:
+      - reports/roc_curve.png
+      - reports/confusion_matrix.png
+      - reports/classification_report.txt
+      - reports/evaluation_summary.json
