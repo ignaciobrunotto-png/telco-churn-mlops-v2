@@ -69,9 +69,6 @@ El modelo baseline fue seleccionado como versión final debido a que:
 Repositorio:
 
 https://dagshub.com/ignaciobrunotto-png/telco-churn-mlops-v2
-
----
-
-## Estado final
-
+El modelo final implementado en el pipeline corresponde al experimento 
+baseline (C=1.0, test_size=0.2, class_weight=None).
 
