@@ -1,0 +1,43 @@
+name: CI Pipeline - Telco Churn
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install dvc
+
+      - name: Configure DVC remote (DagsHub)
+        run: |
+          dvc remote modify dagshub auth basic
+          dvc remote modify dagshub user "${{ secrets.DAGSHUB_USER }}"
+          dvc remote modify dagshub password "${{ secrets.DAGSHUB_TOKEN }}"
+
+      - name: Pull data from DVC remote
+        run: dvc pull
+
+      - name: Run pipeline
+        run: dvc repro
+
+      - name: Show metrics
+        run: |
+          echo "===== METRICS ====="
+          cat metrics.json
