@@ -1,0 +1,77 @@
+# REPORTE COMPARATIVO DE EXPERIMENTOS – TELCO CHURN
+
+## Objetivo
+
+El objetivo de esta etapa fue evaluar el impacto de distintos hiperparámetros sobre el rendimiento del modelo de predicción de churn, partiendo de un modelo base de Regresión Logística e implementando variaciones en su configuración.
+
+---
+
+## Experimentos ejecutados
+
+Se realizaron cuatro experimentos principales:
+
+### 1. Baseline
+- C = 1.0
+- test_size = 0.2
+- class_weight = None
+
+### 2. Regularización más fuerte
+- C = 0.1
+- test_size = 0.2
+- class_weight = None
+
+### 3. Mayor tamaño del conjunto de prueba
+- C = 1.0
+- test_size = 0.3
+- class_weight = None
+
+### 4. Variante adicional (control)
+- Configuración equivalente a la corrida 3.
+- Se utilizó para descartar variabilidad aleatoria y confirmar estabilidad de resultados.
+
+---
+
+## Resultados
+
+| Experimento | Accuracy | Precision | Recall | F1 | ROC AUC |
+|--------------|----------|-----------|--------|-----|---------|
+| Baseline | 0.6865 | 0.5847 | **0.4746** | **0.5239** | 0.7266 |
+| C = 0.1  | 0.6850 | 0.5832 | 0.4677 | 0.5191 | 0.7266 |
+| Test size = 0.3 | 0.6823 | 0.5826 | 0.4431 | 0.5034 | **0.7291** |
+| Variante repetida | 0.6823 | 0.5826 | 0.4431 | 0.5034 | 0.7291 |
+
+---
+
+## Análisis
+
+- La accuracy se mantiene prácticamente constante (~68%) en todos los escenarios.
+- La métrica recall es clave para el problema de churn, ya que mide la capacidad del modelo para identificar clientes que efectivamente se dan de baja.
+- El modelo baseline presenta el mejor valor de recall y el mejor F1-score.
+- Reducir el valor de C no aportó mejoras.
+- Aumentar el tamaño del conjunto de prueba mejora levemente ROC AUC, pero empeora recall y F1.
+- La repetición del experimento confirma estabilidad de los resultados.
+
+---
+
+## Conclusión
+
+El modelo baseline fue seleccionado como versión final debido a que:
+
+- presenta mayor capacidad de detección de churn,
+- logra el mejor equilibrio entre métricas,
+- no compromete interpretabilidad,
+- ofrece resultados más estables.
+
+---
+
+## Evidencia en DagsHub
+
+Repositorio:
+
+https://dagshub.com/ignaciobrunotto-png/telco-churn-mlops-v2
+
+---
+
+## Estado final
+
+
