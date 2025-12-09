@@ -1,0 +1,41 @@
+IMPLEMENTACIÓN TÉCNICA DEL MODELO DE CHURN
+
+ARTEFACTO FINAL
+
+El modelo entrenado se guarda como:
+models/model.pkl
+Este archivo contiene el preprocesamiento de datos y el modelo de clasificación, lo que permite recibir datos directamente sin transformaciones externas.
+
+ARQUITECTURA PROPUESTA
+
+El modelo se integraría en producción de la siguiente forma:
+Sistema cliente → Servicio de predicción → Modelo de churn
+El servicio recibe los datos del cliente, ejecuta la predicción y devuelve:
+predicción de churn (0 / 1)
+probabilidad asociada
+
+INTEGRACIÓN POSIBLE
+
+El modelo puede ser utilizado mediante:
+una API de predicción consumida por otros sistemas
+una interfaz web para usuarios de negocio
+El modelo se carga una vez en memoria y se reutiliza para múltiples predicciones.
+
+VERSIONADO
+
+El proyecto utiliza:
+Git para versionado de código
+DVC para datos y modelos
+DagsHub como repositorio central
+Esto permite reproducir entrenamientos y rastrear cambios entre versiones.
+
+MANTENIMIENTO
+
+En un entorno real se recomienda:
+monitorear cambios en la distribución de datos
+evaluar rendimiento del modelo
+reentrenar de forma periódica
+
+CONCLUSIÓN
+El modelo está preparado para su integración en producción siguiendo buenas
+prácticas de MLOps, garantizando reproducibilidad y trazabilidad.
