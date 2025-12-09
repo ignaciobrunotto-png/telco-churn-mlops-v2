@@ -1,0 +1,12 @@
+data:
+  raw_path: "data/raw/telco_churn.csv"
+  processed_path: "data/processed/telco_churn_clean.csv"
+
+model:
+  C: 1.0
+  max_iter: 1000
+
+split:
+  test_size: 0.2
+  random_state: 42
+  
