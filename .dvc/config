@@ -1,0 +1,7 @@
+[core]
+    remote = dagshub
+['remote "dagshub"']
+    url = https://dagshub.com/ignaciobrunotto-png/telco-churn-mlops-v2.dvc
+    auth = basic
+    user = ignaciobrunotto-png
+    password = a1e0e9df98fa4b41ca99701413fdebae47daa935
